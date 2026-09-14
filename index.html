@@ -2346,7 +2346,9 @@ async function submitLead(){
     }
 
     clearPendingLead();
-
+if (typeof fbq === 'function') {
+  fbq('track', 'Lead');
+}
     const name = payload.clientName;
     setLeadMessage("success", `Děkujeme, ${name}. Konzultant ČMR se vám ozve do 24 hodin.`);
     console.log(`Lead odeslán do Google Sheets: ${name} ${payload.submittedAt}`);
