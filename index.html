@@ -33,8 +33,8 @@ fbq('track', 'PageView');
 <meta jméno="výřez" obsah="šířka=šířka zařízení, počáteční měřítko=1,0, maximální měřítko=5,0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<meta name="description" content="CMR – daňová kalkulačka čistého výnosu a právní audit prodeje nemovitosti.">
-<title>CMR | Daňová kalkulačka čistého výnosu a právní audit</title>
+<meta name="description" content="CMR – Kalkulačka hodnoty a bezpečný postup prodeje vaší nemovitosti.">
+<title>CMR | Kalkulačka hodnoty a bezpečného prodeje</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1115,9 +1115,9 @@ body.finalized .btn-lead-submit{
     </div>
 
     <div class="cmr-header-title">
-      <h1>DAŇOVÁ KALKULAČKA ČISTÉHO VÝNOSU</h1>
-      <div class="subtitle">Orientační právní a daňový audit prodeje nemovitosti</div>
-      <div class="document-id">CMR / TAX-REALTY / v1.2</div>
+      <h1>KALKULAČKA HODNOTY A BEZPEČNÉHO PRODEJE</h1>
+      <div class="subtitle">Orientační analýza čisté částky a právního postupu prodeje</div>
+      <div class="document-id">CMR / SALE-ANALYSIS / v1.3</div>
     </div>
   </header>
 
@@ -1309,13 +1309,13 @@ body.finalized .btn-lead-submit{
   <article>
     <div class="art-header">
       <span class="art-num">Krok 5</span>
-      <h2>Daňové nastavení kalkulace</h2>
+      <h2>Nastavení výpočtu a odpočtů</h2>
     </div>
 
     <div class="art-body">
       <div id="foTaxSettings" hidden>
         <div class="entity-box">
-          <strong>Daňové nastavení pro fyzickou osobu:</strong> Kalkulačka vychází ze sazby 15 %; část celkového základu daně nad zákonný limit může podléhat sazbě 23 %.
+          <strong>Parametry výpočtu pro fyzickou osobu:</strong> Kalkulačka vychází ze sazby 15 %; část celkového základu daně nad zákonný limit může podléhat sazbě 23 %.
         </div>
 
         <div class="frow">
@@ -1337,7 +1337,7 @@ body.finalized .btn-lead-submit{
 
       <div id="poTaxSettings" hidden>
         <div class="entity-box">
-          <strong>Daňové nastavení pro právnickou osobu:</strong> Na právnickou osobu se nevztahuje časový test vlastnictví ani sazby 15 % / 23 % určené pro fyzické osoby.
+          <strong>Parametry výpočtu pro právnickou osobu:</strong> Na právnickou osobu se nevztahuje časový test vlastnictví ani sazby 15 % / 23 % určené pro fyzické osoby.
         </div>
 
         <div class="frow">
@@ -1358,7 +1358,7 @@ body.finalized .btn-lead-submit{
   <article id="reportSection">
     <div class="art-header">
       <span class="art-num">Výstup</span>
-      <h2>Orientační daňový a právní report</h2>
+      <h2>Orientační analýza bezpečného prodeje</h2>
     </div>
 
     <div class="art-body">
@@ -1383,12 +1383,12 @@ body.finalized .btn-lead-submit{
 
         <div class="hook-emphasis"><strong>Nechte si výpočet ověřit specialistou ČMR.</strong>
 
-Do 24 hodin vám zavolá konzultant, potvrdí přesnost propočtu a připraví komplexní analýzu prodeje včetně tržního odhadu vaší nemovitosti — zcela zdarma a nezávazně.</div>
+Do 24 hodin vám zavolá konzultant, potvrdí přesnost propočtu a připraví komplexní analýzu prodeje včetně tržního odhadu vaší nemovitosti — nezávazně.</div>
       </section>
 
       <div class="cta-box">
-        <h3>Komplexní analýza prodeje včetně tržního odhadu zdarma</h3>
-        <p>Nesprávné ocenění, přehlédnuté právní vady nebo chybějící dokumenty mohou zhatit prodej, snížit cenu nebo vás vystavit budoucím sporům. V Českomoravské realitní vám rádi připravíme komplexní daňové a právní posouzení včetně tržního odhadu vaší nemovitosti zcela zdarma a nezávazně.</p>
+        <h3>Komplexní analýza prodeje včetně tržního odhadu</h3>
+        <p>Nesprávné ocenění, přehlédnuté právní vady nebo chybějící dokumenty mohou zhatit prodej, snížit cenu nebo vás vystavit budoucím sporům. V Českomoravské realitní vám rádi připravíme komplexní analýzu prodeje a právní posouzení včetně tržního odhadu vaší nemovitosti zcela nezávazně v rámci našeho servisu.</p>
 
         <div class="lead-success" id="leadSuccess" role="status"></div>
         <div class="lead-error" id="leadError" role="alert"></div>
@@ -2003,7 +2003,7 @@ function loadDraft(){
 
 function exportToFile(){
   try{
-    const fileName = `CMR_danova_kalkulacka_${new Date().toISOString().slice(0,10)}.cmr.json`;
+    const fileName = `CMR_kalkulacka_prodeje_${new Date().toISOString().slice(0,10)}.cmr.json`;
     const blob = new Blob([JSON.stringify(serialize(), null, 2)], {type:"application/json"});
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
