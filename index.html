@@ -314,9 +314,9 @@ body.finalized .finalized-banner{display:block}
 }
 
 .lead-success{
-  border-left:3px solid var(--cmr-green);
-  color:#176b2c;
-  background:var(--cmr-green-light);
+  border-left:3px solid #fff;
+  color:#fff;
+  background:rgba(255,255,255,0.15);
   font-weight:500;
 }
 
@@ -1141,7 +1141,7 @@ body.finalized .btn-lead-submit{
       </div>
 
       <div class="entity-box" id="poEntityInfo" hidden>
-        <strong>Právnická osoba:</strong> Časový test vlastnictví, dvouleté bydliště a osvobození při řešení vlastní bytové potřeby se neuplatní. Příjem z prodeje se standardně posuzuje v režimu daně z příjmů právnických osob.
+        <strong>Právnická osoba:</strong> Časový test vlastnictví, dvouleté bydliště a osvobození při řešení vlastní bytové potřeby se neuplatní. Příjem z prodeje se standardně posuzuje v režimu odvodů z příjmů právnických osob.
       </div>
 
       <div class="frow">
@@ -1224,11 +1224,11 @@ body.finalized .btn-lead-submit{
       </div>
 
       <div class="warning-box" id="costWarningFO">
-        Uplatnit lze pouze náklady věcně související s prodejem, které dokážete doložit. Kalkulačka nenahrazuje individuální daňové posouzení.
+        Uplatnit lze pouze náklady věcně související s prodejem, které dokážete doložit. Kalkulačka nenahrazuje individuální posouzení.
       </div>
 
       <div class="warning-box" id="costWarningPO" hidden>
-        U právnické osoby se daňový základ odvíjí od účetního a daňového zachycení transakce. Tento orientační model nenahrazuje kontrolu účetnictví, daňových odpisů ani daňových úprav.
+        U právnické osoby se základ pro výpočet odvíjí od účetního evidování a finančního zachycení transakce. Tento orientační model nenahrazuje kontrolu účetnictví.
       </div>
     </div>
   </article>
@@ -1301,7 +1301,7 @@ body.finalized .btn-lead-submit{
       </div>
 
       <div class="info-box">
-        Pokud fyzická osoba uplatňuje osvobození z důvodu použití peněz na vlastní bytovou potřebu, musí splnit zákonné podmínky použití prostředků a také včas oznámit jejich získání správci daně.
+        Pokud fyzická osoba uplatňuje osvobození z důvodu použití peněz na vlastní bytovou potřebu, musí splnit zákonné podmínky použití prostředků a také včas oznámit jejich získání finančnímu úřadu.
       </div>
     </div>
   </article>
@@ -1315,7 +1315,7 @@ body.finalized .btn-lead-submit{
     <div class="art-body">
       <div id="foTaxSettings" hidden>
         <div class="entity-box">
-          <strong>Parametry výpočtu pro fyzickou osobu:</strong> Kalkulačka vychází ze sazby 15 %; část celkového základu daně nad zákonný limit může podléhat sazbě 23 %.
+          <strong>Parametry výpočtu pro fyzickou osobu:</strong> Kalkulačka vychází ze sazby 15 %; část celkového základu pro odvod z příjmů nad zákonný limit může podléhat sazbě 23 %.
         </div>
 
         <div class="frow">
@@ -1327,7 +1327,7 @@ body.finalized .btn-lead-submit{
         </div>
 
         <div class="frow">
-          <label for="otherTaxBase">Jiný zdanitelný základ fyzické osoby ve stejném roce</label>
+          <label for="otherTaxBase">Jiný základ pro odpočet z příjmů fyzické osoby ve stejném roce</label>
           <div class="fw">
             <input id="otherTaxBase" name="otherTaxBase" type="number" min="0" step="1" value="0" inputmode="numeric" class="field money-input" placeholder="Kč">
             <div class="help-text">Volitelné. Pomáhá zpřesnit, zda část zisku z prodeje může spadat do sazby 23 %.</div>
@@ -1341,10 +1341,10 @@ body.finalized .btn-lead-submit{
         </div>
 
         <div class="frow">
-          <label for="corporateTaxRate">Orientační sazba daně z příjmů právnických osob</label>
+          <label for="corporateTaxRate">Orientační sazba odpočtů z příjmů právnických osob</label>
           <div class="fw">
             <input id="corporateTaxRate" name="corporateTaxRate" type="text" class="field" value="21 %" readonly>
-            <div class="help-text">Použije se orientační standardní sazba pro právnickou osobu. U specifických subjektů nebo situací může být daňové posouzení odlišné.</div>
+            <div class="help-text">Použije se orientační standardní sazba pro právnickou osobu. U specifických subjektů nebo situací může být posouzení odlišné.</div>
           </div>
         </div>
       </div>
@@ -1379,7 +1379,7 @@ body.finalized .btn-lead-submit{
       <!-- NOVÝ HOOK: zobrazí se až po platném výpočtu -->
       <section id="leadHook" aria-live="polite">
         <h3>Váš orientační výpočet je hotový.</h3>
-        <p>Toto číslo je orientační a vychází z obecných daňových pravidel. Reálná situace může mít výjimky, které se do jednoduchého vzorce nevejdou — a právě tam se nejčastěji ztrácí peníze.</p>
+        <p>Toto číslo je orientační a vychází z obecných odvodových pravidel. Reálná situace může mít výjimky, které se do jednoduchého vzorce nevejdou — a právě tam se nejčastěji ztrácí peníze.</p>
 
         <div class="hook-emphasis"><strong>Nechte si výpočet ověřit specialistou ČMR.</strong>
 
@@ -1687,27 +1687,27 @@ function calculateIndividualReport(data){
   const risks = [];
 
   if(livedTwoYears === "ano"){
-    status = "OSVOBOZENO OD DANĚ";
+    status = "OSVOBOZENO OD ODVODŮ";
     badgeClass = "status-exempt";
-    explanation = "Podle zadaných údajů jste v nemovitosti bydlel/a alespoň 2 roky bezprostředně před prodejem. Příjem může být při splnění zákonných podmínek osvobozen od daně z příjmů.";
-    taxNote = "Daň v orientačním modelu: 0 Kč.";
+    explanation = "Podle zadaných údajů jste v nemovitosti bydlel/a alespoň 2 roky bezprostředně před prodejem. Příjem může být při splnění zákonných podmínek v plné výši osvobozen.";
+    taxNote = "Odpočet v orientačním modelu: 0 Kč.";
     risks.push("Pro případ kontroly uchovejte podklady prokazující skutečné bydliště. Samotný trvalý pobyt nemusí vždy sám o sobě prokázat faktické bydlení.");
   }else if(timeTest.met){
-    status = "OSVOBOZENO OD DANĚ";
+    status = "OSVOBOZENO OD ODVODŮ";
     badgeClass = "status-exempt";
     explanation = `Podle zadaných údajů je splněn časový test vlastnictví ${timeTest.years} let. U dědictví v přímé linii se zohledňuje také zadaná doba vlastnictví zůstavitele.`;
-    taxNote = "Daň v orientačním modelu: 0 Kč.";
+    taxNote = "Odpočet v orientačním modelu: 0 Kč.";
   }else if(housingNeed === "ano"){
     status = "PODMÍNĚNĚ OSVOBOZENO";
     badgeClass = "status-conditional";
-    explanation = "Podle zadaných údajů není splněno dvouleté bydliště ani časový test. Osvobození však může být možné při zákonném použití prostředků na obstarání vlastní bytové potřeby a při včasném oznámení správci daně.";
-    taxNote = "Daň v orientačním modelu: 0 Kč, pokud budou splněny všechny zákonné podmínky osvobození.";
-    risks.push("Získání prostředků je nutné včas oznámit správci daně do konce lhůty pro podání daňového přiznání za rok, ve kterém jste prostředky získali.");
+    explanation = "Podle zadaných údajů není splněno dvouleté bydliště ani časový test. Osvobození však může být možné při zákonném použití prostředků na obstarání vlastní bytové potřeby a při včasném oznámení finančnímu úřadu.";
+    taxNote = "Odpočet v orientačním modelu: 0 Kč, pokud budou splněny všechny zákonné podmínky osvobození.";
+    risks.push("Získání prostředků je nutné včas oznámit finančnímu úřadu do konce lhůty pro podání ročního vyúčtování za rok, ve kterém jste prostředky získali.");
     risks.push("Prostředky musí být použity na vlastní bytovou potřebu ve lhůtě stanovené zákonem. Uchovejte doklady o použití peněz.");
   }else{
-    status = "PRAVDĚPODOBNĚ ZDANITELNÉ";
+    status = "PRAVDĚPODOBNĚ PODLÉHÁ ODVODŮM";
     badgeClass = "status-taxable";
-    explanation = "Podle zadaných údajů není splněno dvouleté bydliště ani časový test a nebylo zvoleno použití prostředků na vlastní bytovou potřebu. Výpočet níže je orientační model daně fyzické osoby.";
+    explanation = "Podle zadaných údajů není splněno dvouleté bydliště ani časový test a nebylo zvoleno použití prostředků na vlastní bytovou potřebu. Výpočet níže je orientační model pro fyzickou osobu.";
 
     const threshold = numberValue("#higherRateThreshold");
     const otherTaxBase = numberValue("#otherTaxBase");
@@ -1718,15 +1718,15 @@ function calculateIndividualReport(data){
       const taxedAt23 = Math.max(0, taxableProfit - taxedAt15);
 
       tax = taxedAt15 * 0.15 + taxedAt23 * 0.23;
-      taxNote = `Model pracuje se sazbou 15 % a případně se sazbou 23 % pro část celkového základu daně nad zadaný limit ${formatCurrency(threshold)}.`;
+      taxNote = `Model pracuje se sazbou 15 % a případně se sazbou 23 % pro část celkového základu pro výpočet nad zadaný limit ${formatCurrency(threshold)}.`;
     }else{
       tax = taxableProfit * 0.15;
-      taxNote = "Limit pro vyšší sazbu 23 % nebyl vyplněn. Kalkulačka proto používá pouze orientační sazbu 15 %; skutečná daň může být vyšší.";
+      taxNote = "Limit pro vyšší sazbu 23 % nebyl vyplněn. Kalkulačka proto používá pouze orientační sazbu 15 %; skutečné odvody mohou být vyšší.";
     }
   }
 
-  if(data.salePrice > 5000000 && status !== "PRAVDĚPODOBNĚ ZDANITELNÉ"){
-    risks.push("Osvobozený příjem přesahuje 5 000 000 Kč: ověřte oznamovací povinnost vůči finančnímu úřadu podle § 38v zákona o daních z příjmů.");
+  if(data.salePrice > 5000000 && status !== "PRAVDĚPODOBNĚ PODLÉHÁ ODVODŮM"){
+    risks.push("Osvobozený příjem přesahuje 5 000 000 Kč: ověřte oznamovací povinnost vůči finančnímu úřadu.");
   }
 
   if(acquisitionMethod === "Dědictví v přímé linii" && !$("#decedentAcquisitionDate").value){
@@ -1753,7 +1753,7 @@ function calculateIndividualReport(data){
   $("#report").className = "";
   $("#report").innerHTML = `
     <section class="report-card">
-      <h3>1. Status osvobození od daně – fyzická osoba</h3>
+      <h3>1. Status posouzení – fyzická osoba</h3>
       <span class="status-badge ${badgeClass}">${escapeHTML(status)}</span>
       <div>${escapeHTML(explanation)}</div>
       ${dueText}
@@ -1767,22 +1767,22 @@ function calculateIndividualReport(data){
           <tr><th>Nabývací / pořizovací cena</th><td>${formatCurrency(data.purchasePrice)}</td></tr>
           <tr><th>Rekonstrukce a technické zhodnocení</th><td>${formatCurrency(data.renovationCosts)}</td></tr>
           <tr><th>Náklady na prodej, právní servis a provizi</th><td>${formatCurrency(data.sellingCosts)}</td></tr>
-          <tr><th>Orientační základ pro výpočet daně</th><td>${formatCurrency(taxableProfit)}</td></tr>
-          <tr><th>Předpokládaná daň z příjmů fyzické osoby</th><td>${formatCurrency(tax)}</td></tr>
-          <tr class="important"><th>Orientační čistý výnos po nákladech a dani</th><td>${formatCurrency(cleanProceeds)}</td></tr>
+          <tr><th>Orientační základ pro výpočet odvodů</th><td>${formatCurrency(taxableProfit)}</td></tr>
+          <tr><th>Orientační odpočet pro fyzické osoby</th><td>${formatCurrency(tax)}</td></tr>
+          <tr class="important"><th>Orientační čistý výnos po nákladech a odvodech</th><td>${formatCurrency(cleanProceeds)}</td></tr>
         </tbody>
       </table>
       <div class="help-text">${escapeHTML(taxNote)}</div>
     </section>
 
     <section class="report-card">
-      <h3>3. Identifikované daňové a právní body</h3>
+      <h3>3. Identifikované finanční a právní body</h3>
       <ul>${risks.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
     </section>
 
     <section class="report-card">
       <h3>4. Doporučený další krok</h3>
-      <div class="success-box">Výsledek je orientační a nenahrazuje individuální daňové ani právní posouzení. CMR doporučuje ověřit nabývací titul, doklady k nákladům, způsob užívání nemovitosti a konkrétní termín prodeje.</div>
+      <div class="success-box">Výsledek je orientační a nenahrazuje individuální odborné ani právní posouzení. CMR doporučuje ověřit nabývací titul, doklady k nákladům, způsob užívání nemovitosti a konkrétní termín prodeje.</div>
     </section>
   `;
 
@@ -1806,22 +1806,22 @@ function calculateCorporateReport(data){
     taxableProfit,
     tax,
     cleanProceeds,
-    status:"ZDANITELNÉ V REŽIMU PRÁVNICKÉ OSOBY"
+    status:"REŽIM PRÁVNICKÉ OSOBY"
   };
 
   const risks = [
     "U právnické osoby se na prodej nemovitosti nevztahuje časový test vlastnictví ani osvobození založené na dvouletém bydlišti.",
-    "Model nezohledňuje účetní zůstatkovou cenu, daňové odpisy, opravné položky, rezervy, odloženou daň ani další daňové úpravy.",
-    "Ověřte, zda je nemovitost vedena jako dlouhodobý majetek, zásoba nebo investiční nemovitost; účetní a daňové dopady se mohou lišit.",
+    "Model nezohledňuje účetní zůstatkovou cenu, odpisy, opravné položky, rezervy ani další optimalizační úpravy.",
+    "Ověřte, zda je nemovitost vedena jako dlouhodobý majetek, zásoba nebo investiční nemovitost; účetní a finanční dopady se mohou lišit.",
     "Před podpisem kupní smlouvy doporučujeme prověřit list vlastnictví, zástavní práva, věcná břemena, DPH režim transakce a smluvní odpovědnost za vady."
   ];
 
   $("#report").className = "";
   $("#report").innerHTML = `
     <section class="report-card">
-      <h3>1. Status zdanění – právnická osoba</h3>
-      <span class="status-badge status-taxable">ZDANITELNÉ V REŽIMU PRÁVNICKÉ OSOBY</span>
-      <div>Nemovitost je podle zadaných údajů vlastněna právnickou osobou. Časový test, dvouleté bydliště ani osvobození při použití peněz na vlastní bytovou potřebu se zde neuplatní. Orientační model používá standardní sazbu daně z příjmů právnických osob 21 %.</div>
+      <h3>1. Status posouzení – právnická osoba</h3>
+      <span class="status-badge status-taxable">REŽIM PRÁVNICKÉ OSOBY</span>
+      <div>Nemovitost je podle zadaných údajů vlastněna právnickou osobou. Časový test, dvouleté bydliště ani osvobození při použití peněz na vlastní bytovou potřebu se zde neuplatní. Orientační model používá standardní sazbu odpočtu z příjmů právnických osob 21 %.</div>
     </section>
 
     <section class="report-card">
@@ -1832,22 +1832,22 @@ function calculateCorporateReport(data){
           <tr><th>Vložená pořizovací / účetní hodnota pro model</th><td>${formatCurrency(data.purchasePrice)}</td></tr>
           <tr><th>Vložené rekonstrukce a zhodnocení pro model</th><td>${formatCurrency(data.renovationCosts)}</td></tr>
           <tr><th>Náklady na prodej, právní servis a provizi</th><td>${formatCurrency(data.sellingCosts)}</td></tr>
-          <tr><th>Orientační základ pro výpočet daně</th><td>${formatCurrency(taxableProfit)}</td></tr>
-          <tr><th>Orientační daň z příjmů právnických osob – 21 %</th><td>${formatCurrency(tax)}</td></tr>
-          <tr class="important"><th>Orientační čistý výnos po nákladech a dani</th><td>${formatCurrency(cleanProceeds)}</td></tr>
+          <tr><th>Orientační základ pro výpočet</th><td>${formatCurrency(taxableProfit)}</td></tr>
+          <tr><th>Orientační sazba odpočtu z příjmů právnických osob – 21 %</th><td>${formatCurrency(tax)}</td></tr>
+          <tr class="important"><th>Orientační čistý výnos po nákladech a odvodech</th><td>${formatCurrency(cleanProceeds)}</td></tr>
         </tbody>
       </table>
-      <div class="help-text">Výpočet je zjednodušený. Skutečný daňový základ právnické osoby se stanoví podle účetních a daňových podkladů společnosti.</div>
+      <div class="help-text">Výpočet je zjednodušený. Skutečný základ pro výpočet právnické osoby se stanoví podle účetních a odpisových podkladů společnosti.</div>
     </section>
 
     <section class="report-card">
-      <h3>3. Identifikované daňové a právní body</h3>
+      <h3>3. Identifikované finanční a právní body</h3>
       <ul>${risks.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
     </section>
 
     <section class="report-card">
       <h3>4. Doporučený další krok</h3>
-      <div class="success-box">Pro právnickou osobu doporučujeme před rozhodnutím o prodeji sladit postup s účetní, daňovým poradcem a právníkem, zejména s ohledem na účetní hodnotu majetku, odpisy a režim DPH.</div>
+      <div class="success-box">Pro právnickou osobu doporučujeme před rozhodnutím o prodeji sladit postup s účetní a právníkem, zejména s ohledem na účetní hodnotu majetku, odpisy a režim DPH.</div>
     </section>
   `;
 
