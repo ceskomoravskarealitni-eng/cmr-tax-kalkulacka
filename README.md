@@ -1,2 +1,2 @@
-CMR - Daňová kalkulačka čistého výnosu
-Statická HTML aplikace pro orientační výpočet čistého výnosu z prodeje nemovitosti.
+CMR | Kalkulačka hodnoty a bezpečného prodeje
+Statická HTML aplikace pro orientační výpočet čisté částky a právního postupu prodeje nemovitosti.
