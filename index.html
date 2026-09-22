@@ -1422,7 +1422,7 @@ Do 24 hodin vám zavolá konzultant, potvrdí přesnost propočtu a připraví k
 
  <div class="lead-actions">
  <button type="button" class="btn-lead-submit" id="leadSubmitBtn" disabled>
- Odeslat výpočet ke konzultaci
+ Odemknout výpočet
  </button>
  </div>
  </div>
@@ -2349,7 +2349,7 @@ async function submitLead(){
  setLeadMessage("success", `Děkujeme, ${name}. Váš report byl úspěšně odemčen výše. Konzultant ČMR se vám ozve do 24 hodin.`);
  console.log(`Lead odeslán do Google Sheets: ${name} ${payload.submittedAt}`);
 
- $("#leadSubmitBtn").textContent = "Odesláno";
+ $("#leadSubmitBtn").textContent = "Odemčeno";
  $("#leadSubmitBtn").disabled = true;
 
  // --- NOVÁ LOGIKA: ODHALENÍ REPORTU ---
