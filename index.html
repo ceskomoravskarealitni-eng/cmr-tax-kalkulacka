@@ -309,10 +309,10 @@ body.finalized .finalized-banner{display:block}
 }
 
 .lead-success{
-  border-left:3px solid #fff;
-  color:#fff;
-  background:rgba(255,255,255,0.15);
-  font-weight:500;
+ border-left:3px solid var(--cmr-green);
+ color:#176b2c;
+ background:var(--cmr-green-light);
+ font-weight:500;
 }
 
 .lead-error{
@@ -588,8 +588,7 @@ select.field{cursor:pointer}
  margin-top:12px;
 }
 
-.btn-calculate,
-.btn-lead-submit{
+.btn-calculate{
  min-height:42px;
  padding:9px 18px;
  border:1.5px solid var(--cmr-red);
@@ -603,16 +602,41 @@ select.field{cursor:pointer}
  transition:filter .2s,opacity .2s;
 }
 
-.btn-calculate:hover,
-.btn-lead-submit:hover:not(:disabled){
+.btn-calculate:hover{
  filter:brightness(.94);
 }
 
-.btn-lead-submit:disabled{
- border-color:#bbb;
- color:#777;
- background:#e5e5e5;
+/* VYSOKO KONTRASTNÍ ÚPRAVA CTA TLAČÍTKA */
+.cta-box .btn-lead-submit{
+ min-height:46px;
+ padding:10px 24px;
+ border:2px solid #ffffff !important;
+ border-radius:3px;
+ color:var(--cmr-red) !important;
+ background:#ffffff !important;
+ cursor:pointer;
+ font-family:"Montserrat",sans-serif;
+ font-size:15px;
+ font-weight:700;
+ box-shadow:0 3px 10px rgba(0,0,0,.18);
+ transition:all .2s ease;
+}
+
+.cta-box .btn-lead-submit:hover:not(:disabled){
+ background:#fff5f7 !important;
+ color:var(--cmr-red-dark) !important;
+ border-color:#ffffff !important;
+ transform:translateY(-1px);
+ box-shadow:0 5px 14px rgba(0,0,0,.25);
+}
+
+.cta-box .btn-lead-submit:disabled{
+ border-color:#d0d0d0 !important;
+ color:#777777 !important;
+ background:#e5e5e5 !important;
  cursor:not-allowed;
+ box-shadow:none;
+ opacity:.85;
 }
 
 .btn-lead-submit.is-sending{
@@ -1422,7 +1446,7 @@ Do 24 hodin vám zavolá konzultant, potvrdí přesnost propočtu a připraví k
 
  <div class="lead-actions">
  <button type="button" class="btn-lead-submit" id="leadSubmitBtn" disabled>
- Odemknout výpočet
+ Odeslat výpočet ke konzultaci
  </button>
  </div>
  </div>
@@ -2325,7 +2349,7 @@ async function submitLead(){
  const button = $("#leadSubmitBtn");
  button.disabled = true;
  button.classList.add("is-sending");
- button.textContent = "Odemykám…";
+ button.textContent = "Odesílám…";
  setLeadMessage("", "");
 
  try{
@@ -2349,7 +2373,7 @@ async function submitLead(){
  setLeadMessage("success", `Děkujeme, ${name}. Váš report byl úspěšně odemčen výše. Konzultant ČMR se vám ozve do 24 hodin.`);
  console.log(`Lead odeslán do Google Sheets: ${name} ${payload.submittedAt}`);
 
- $("#leadSubmitBtn").textContent = "Odemčeno";
+ $("#leadSubmitBtn").textContent = "Odesláno";
  $("#leadSubmitBtn").disabled = true;
 
  // --- NOVÁ LOGIKA: ODHALENÍ REPORTU ---
@@ -2488,7 +2512,8 @@ function init(){
 document.addEventListener("DOMContentLoaded", init);
 </script>
  <footer style="background:#F4F4F4;padding:24px 16px;margin-top:40px;font-family:'Roboto',sans-serif;font-size:13px;color:#4A4A4A;text-align:center;border-top:3px solid #D31145;">
- <p style="margin:4px 0;">
+ <p style="ma
+rgin:4px 0;">
  <strong>Českomoravská realitní, a.s.</strong> | IČO: [27127966] | Sídlo: [Hlavní 1151/4, 141 Praha 4 - Záběhlice]
  </p>
  <p style="margin:4px 0;">
