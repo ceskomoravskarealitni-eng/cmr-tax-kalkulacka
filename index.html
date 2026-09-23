@@ -112,8 +112,8 @@ body.finalized .btn-finalize{display:none}
  HLAVIČKA
 ───────────────────────────────────────── */
 .cmr-header{ display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:3px solid var(--cmr-red); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-.cmr-logo-wrap{ width:120px; flex-shrink:0; display:flex; align-items:center; justify-content:flex-start; }
-.cmr-logo-wrap img{ display:block; width:100%; height:auto; object-fit:contain; }
+.cmr-logo-wrap{ width:120px; height:76px; flex-shrink:0; display:flex; align-items:center; justify-content:flex-start; }
+.cmr-logo-wrap img{ display:block; width:100%; height:auto; max-height:76px; object-fit:contain; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 .cmr-header-title{ flex:1; text-align:right; }
 .cmr-header-title h1{ margin:0 0 4px; color:var(--cmr-black); font-family:"Montserrat",sans-serif; font-size:19px; font-weight:700; line-height:1.2; }
 .cmr-header-title .subtitle{ color:var(--cmr-gray-dark); font-size:13.5px; }
@@ -206,7 +206,7 @@ article{margin-bottom:16px}
  .save-status-bar, .draft-loaded-banner, .finalized-banner, .draft-toast, .storage-warning, .validation-warning, .btn-primary, .turnstile-wrap, .consent-row, .msg-alert, .teaser-box, .cta-box { display:none!important; }
  body{ max-width:186mm; margin:0; padding:0; background:#fff; font-size:9pt; }
  .cmr-header{ flex-direction:row!important; margin-bottom:4mm; padding-bottom:3mm; }
- .cmr-logo-wrap{ width:44mm!important; }
+ .cmr-logo-wrap{ width:44mm!important; height:28mm!important; }
  .cmr-header-title{ text-align:right!important; }
  article{ margin-bottom:2mm; page-break-inside:avoid; break-inside:avoid; }
  .frow{ flex-direction:row!important; flex-wrap:wrap!important; margin:2mm 0; }
@@ -237,7 +237,7 @@ article{margin-bottom:16px}
 
  <header class="cmr-header">
  <div class="cmr-logo-wrap">
- <img src="https://www.cmr.cz/poskireal/poskireal-v26.2/0/frontend/CID/cmr/easy-v4/images/logo.png" alt="Českomoravská realitní, a.s.">
+ <img src="logo CMR.jpg" alt="Českomoravská realitní, a.s." onerror="this.onerror=null; this.src='https://www.cmr.cz/poskireal/poskireal-v26.2/0/frontend/CID/cmr/easy-v4/images/logo.png';">
  </div>
  <div class="cmr-header-title">
  <h1>KALKULAČKA ČISTÉHO VÝNOSU</h1>
