@@ -1862,7 +1862,7 @@ function calculateIndividualReport(data){
  <tr><th>Rekonstrukce a technické zhodnocení</th><td>${formatCurrency(data.renovationCosts)}</td></tr>
  <tr><th>Náklady na prodej, právní servis a provizi</th><td>${formatCurrency(data.sellingCosts)}</td></tr>
  <tr><th>Orientační základ pro výpočet odvodů</th><td>${formatCurrency(taxableProfit)}</td></tr>
- <tr><th>Orientační odpočet pro fyzické osoby</th><td>${formatCurrency(tax)}</td></tr>
+ <tr><th>Orientační odvod pro fyzické osoby</th><td>${formatCurrency(tax)}</td></tr>
  <tr class="important"><th>Orientační čistý výnos po nákladech a odvodech</th><td>${formatCurrency(cleanProceeds)}</td></tr>
  </tbody>
  </table>
@@ -1929,7 +1929,7 @@ function calculateCorporateReport(data){
  <tr><th>Vložené rekonstrukce a zhodnocení pro model</th><td>${formatCurrency(data.renovationCosts)}</td></tr>
  <tr><th>Náklady na prodej, právní servis a provizi</th><td>${formatCurrency(data.sellingCosts)}</td></tr>
  <tr><th>Orientační základ pro výpočet</th><td>${formatCurrency(taxableProfit)}</td></tr>
- <tr><th>Orientační sazba odpočtu z příjmů právnických osob – 21 %</th><td>${formatCurrency(tax)}</td></tr>
+ <tr><th>Orientační sazba odvodu z příjmů právnických osob – 21 %</th><td>${formatCurrency(tax)}</td></tr>
  <tr class="important"><th>Orientační čistý výnos po nákladech a odvodech</th><td>${formatCurrency(cleanProceeds)}</td></tr>
  </tbody>
  </table>
