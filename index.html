@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Google tag & Meta Pixel (ponecháno pro kampaně) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1038434503"></script>
 <script>
  window.dataLayer = window.dataLayer || [];
@@ -11,6 +11,7 @@
  gtag('js', new Date());
  gtag('config', 'AW-1038434503');
 </script>
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -23,6 +24,7 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1433692415543795');
 fbq('track', 'PageView');
 </script>
+<!-- End Meta Pixel Code -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="description" content="CMR – Rychlá kalkulačka hodnoty a čistého výnosu z prodeje vaší nemovitosti.">
@@ -31,144 +33,188 @@ fbq('track', 'PageView');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://challenges.cloudflare.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 
 <style>
-:root {
- --cmr-red: #D31145;
- --cmr-red-dark: #A80D33;
- --cmr-red-light: rgba(211,17,69,.06);
- --cmr-black: #1A1A1A;
- --cmr-gray-dark: #4A4A4A;
- --cmr-gray-light: #F4F4F4;
- --cmr-border: #E0E0E0;
- --cmr-green: #2E7D32;
- --cmr-green-light: rgba(46,125,50,.08);
- --cmr-orange: #E65100;
- --cmr-blue: #1565C0;
+:root{
+ --cmr-red:#D31145;
+ --cmr-red-dark:#A80D33;
+ --cmr-red-light:rgba(211,17,69,.06);
+ --cmr-black:#1A1A1A;
+ --cmr-gray-dark:#4A4A4A;
+ --cmr-gray-light:#F4F4F4;
+ --cmr-border:#E0E0E0;
+ --cmr-green:#2E7D32;
+ --cmr-green-light:rgba(46,125,50,.08);
+ --cmr-orange:#E65100;
+ --cmr-orange-light:rgba(230,81,0,.08);
+ --cmr-blue:#1565C0;
+ --cmr-yellow:#FFC107;
+ --cmr-yellow-light:#FFF8E1;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-html { background: #ececec; }
-body {
- margin: 0; padding: 12px 16px 48px; max-width: 800px; margin-inline: auto;
- color: var(--cmr-black); background: #fff;
- font-family: "Roboto", Arial, sans-serif; font-size: 16px; line-height: 1.45;
+@page{size:A4;margin:12mm}
+
+*, *::before, *::after{box-sizing:border-box}
+html{background:#ececec; scroll-behavior: smooth;}
+
+body{
+ margin:0; padding:12px 16px 48px; max-width:800px; margin-inline:auto;
+ overflow-x:hidden; color:var(--cmr-black); background:#fff;
+ font-family:"Roboto",Arial,sans-serif; font-size:16px; line-height:1.45;
 }
 
-button, input, textarea, select { font: inherit; }
-button { touch-action: manipulation; }
+button, input, textarea, select{font:inherit}
+button{touch-action:manipulation}
+textarea{resize:none; overflow:hidden;}
 
 /* ─────────────────────────────────────────
- ADMINISTRÁTORSKÁ LIŠTA (Skryto ve výchozím public módu)
+ ADMINISTRÁTORSKÁ LIŠTA (Skrytá v public módu)
 ───────────────────────────────────────── */
 .save-status-bar { display: none; }
 body.admin-mode .save-status-bar {
- position: sticky; top: 0; z-index: 1000;
- display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
- margin: -12px -16px 12px; padding: 8px 12px; border-bottom: 2px solid var(--cmr-border);
- background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+ position:sticky; top:0; z-index:1000; display:flex; align-items:center;
+ justify-content:space-between; gap:8px; flex-wrap:wrap;
+ margin:-12px -16px 12px; padding:8px 12px; border-bottom:2px solid var(--cmr-border);
+ background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
-.status-indicator { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--cmr-gray-dark); }
-.status-dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; }
-.status-dot.saved { background: var(--cmr-green); }
-.status-dot.unsaved { background: var(--cmr-orange); }
+.status-indicator{ display:flex; align-items:center; gap:6px; color:var(--cmr-gray-dark); font-size:13px; }
+.status-dot{ width:10px; height:10px; border-radius:50%; background:#ccc; transition:background .3s; }
+.status-dot.saved{background:var(--cmr-green)}
+.status-dot.unsaved{background:var(--cmr-orange)}
+.status-dot.saving{ background:var(--cmr-yellow); animation:pulse-dot 1s infinite; }
+@keyframes pulse-dot{ 0%,100%{opacity:1} 50%{opacity:.4} }
+.save-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+.save-status-bar button{ min-height:36px; padding:6px 14px; border:1.5px solid var(--cmr-border); border-radius:3px; color:var(--cmr-gray-dark); background:#fff; cursor:pointer; font-family:"Montserrat",sans-serif; font-size:13px; font-weight:600; transition:all .2s; white-space:nowrap; }
+.save-status-bar button:hover{ border-color:var(--cmr-red); color:var(--cmr-red); }
+.save-status-bar .btn-save-draft{ color:#fff; border-color:var(--cmr-green); background:var(--cmr-green); }
+.save-status-bar .btn-load-draft{ color:var(--cmr-green); border-color:var(--cmr-green); }
+.save-status-bar .btn-export-file{ color:#fff; border-color:var(--cmr-blue); background:var(--cmr-blue); }
+.save-status-bar .btn-import-file{ color:var(--cmr-blue); border-color:var(--cmr-blue); }
+.save-status-bar .btn-finalize{ color:#fff; border-color:var(--cmr-red); background:var(--cmr-red); }
+.save-status-bar .btn-unlock{ display:none; color:#fff; border-color:var(--cmr-orange); background:var(--cmr-orange); }
+body.finalized .btn-unlock{display:inline-block}
+body.finalized .btn-finalize{display:none}
+.hidden-file-input{display:none}
+
+.draft-toast{ position:fixed; right:20px; bottom:20px; z-index:2000; padding:12px 20px; border-radius:5px; color:#fff; background:var(--cmr-green); box-shadow:0 4px 16px rgba(0,0,0,.2); font-size:15px; font-weight:500; opacity:0; transform:translateY(100px); transition:all .3s ease; pointer-events:none; }
+.draft-toast.show{ opacity:1; transform:translateY(0); }
+.draft-toast.error{background:var(--cmr-red)}
+.storage-warning, .draft-loaded-banner, .finalized-banner, .validation-warning{ display:none; margin-bottom:12px; padding:10px 16px; border-radius:4px; font-size:15px; }
+.storage-warning{ align-items:center; gap:8px; color:var(--cmr-orange); border:1.5px solid var(--cmr-orange); background:var(--cmr-orange-light); font-weight:500; }
+.storage-warning.visible{display:flex}
+.draft-loaded-banner{ align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; border:1.5px solid var(--cmr-green); background:var(--cmr-green-light); }
+.draft-loaded-banner.visible{display:flex}
+.draft-loaded-banner .banner-text{ color:var(--cmr-green); font-weight:500; }
+.draft-loaded-banner button{ min-height:32px; padding:4px 12px; border:1px solid var(--cmr-green); border-radius:3px; color:var(--cmr-green); background:#fff; cursor:pointer; font-size:13px; }
 
 /* ─────────────────────────────────────────
  HLAVIČKA
 ───────────────────────────────────────── */
-.cmr-header {
- display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px;
- border-bottom: 3px solid var(--cmr-red);
-}
-.cmr-logo-wrap { width: 110px; flex-shrink: 0; }
-.cmr-logo-wrap img { width: 100%; height: auto; display: block; }
-.cmr-header-title { flex: 1; text-align: right; }
-.cmr-header-title h1 { margin: 0 0 4px; font-family: "Montserrat", sans-serif; font-size: 18px; font-weight: 700; line-height: 1.2; }
-.cmr-header-title .subtitle { color: var(--cmr-gray-dark); font-size: 13.5px; }
+.cmr-header{ display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:3px solid var(--cmr-red); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.cmr-logo-wrap{ width:120px; flex-shrink:0; display:flex; align-items:center; justify-content:flex-start; }
+.cmr-logo-wrap img{ display:block; width:100%; height:auto; object-fit:contain; }
+.cmr-header-title{ flex:1; text-align:right; }
+.cmr-header-title h1{ margin:0 0 4px; color:var(--cmr-black); font-family:"Montserrat",sans-serif; font-size:19px; font-weight:700; line-height:1.2; }
+.cmr-header-title .subtitle{ color:var(--cmr-gray-dark); font-size:13.5px; }
 
 /* ─────────────────────────────────────────
- SEKCE & FORMULÁŘ
+ SEKCE
 ───────────────────────────────────────── */
-article { margin-bottom: 16px; }
-.art-header {
- display: flex; align-items: center; gap: 8px; margin-bottom: 10px; padding: 8px 12px;
- border-radius: 3px; background: linear-gradient(90deg, var(--cmr-red), var(--cmr-red-dark));
-}
-.art-header h2 { margin: 0; color: #fff; font-family: "Montserrat", sans-serif; font-size: 15px; font-weight: 700; }
-.art-num { padding: 2px 8px; border-radius: 3px; color: #fff; background: rgba(255,255,255,.25); font-family: "Montserrat", sans-serif; font-size: 13px; font-weight: 700; }
+article{margin-bottom:16px}
+.art-header{ display:flex; align-items:center; gap:8px; margin-bottom:10px; padding:8px 12px; border-radius:3px; background:linear-gradient(90deg,var(--cmr-red),var(--cmr-red-dark)); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.art-header h2{ margin:0; color:#fff; font-family:"Montserrat",sans-serif; font-size:15px; font-weight:700; }
+.art-num{ padding:2px 8px; border-radius:3px; color:#fff; background:rgba(255,255,255,.25); font-family:"Montserrat",sans-serif; font-size:13px; font-weight:700; }
 
-.frow { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
-.frow label { min-width: 220px; flex-shrink: 0; padding-top: 8px; font-weight: 500; color: var(--cmr-gray-dark); }
-.fw { flex: 1; min-width: 140px; }
-.fhalf { flex: 0 0 calc(50% - 10px); min-width: 120px; }
+.frow{ display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.frow label{ min-width:220px; flex-shrink:0; padding-top:8px; font-weight:500; color:var(--cmr-gray-dark); }
+.fw{ flex:1; min-width:140px; }
+.fhalf{ flex:0 0 calc(50% - 10px); min-width:120px; }
 
-.field {
- width: 100%; min-height: 40px; padding: 8px 10px; border: 1.5px solid var(--cmr-border);
- border-radius: 4px; outline: none; background: #fafafa; font-size: 16px; transition: all 0.2s;
-}
-.field:focus { border-color: var(--cmr-red); background: #fff; box-shadow: 0 0 0 3px var(--cmr-red-light); }
-.required { color: var(--cmr-red); }
-.help-text { margin-top: 4px; font-size: 12.5px; color: var(--cmr-gray-dark); }
+.field{ width:100%; min-height:40px; padding:8px 10px; border:1.5px solid var(--cmr-border); border-radius:4px; outline:none; background:#fafafa; font-size:16px; transition:all 0.2s; }
+.field:focus{ border-color:var(--cmr-red); background:#fff; box-shadow:0 0 0 3px var(--cmr-red-light); }
+.required{ color:var(--cmr-red); font-weight:700; }
+.help-text{ margin-top:4px; font-size:12.5px; color:var(--cmr-gray-dark); line-height: 1.4; }
 
 /* ─────────────────────────────────────────
- TEASER & HOOK (Nová logika CRO)
+ TEASER (Nová logika CRO)
 ───────────────────────────────────────── */
-.teaser-box {
- display: none; padding: 20px; margin: 16px 0; border: 2px solid var(--cmr-green);
- border-radius: 6px; background: var(--cmr-green-light); text-align: center;
- animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.teaser-box.visible { display: block; }
-.teaser-box h3 { margin: 0 0 8px; color: var(--cmr-green); font-family: "Montserrat", sans-serif; font-size: 16px; }
-.teaser-value { font-family: "Montserrat", sans-serif; font-size: 26px; font-weight: 700; color: var(--cmr-black); margin-bottom: 12px; }
-.teaser-box p { margin: 0; font-size: 14px; color: var(--cmr-gray-dark); line-height: 1.5; }
+.teaser-box { display:none; padding:20px; margin:16px 0; border:2px solid var(--cmr-green); border-radius:6px; background:var(--cmr-green-light); text-align:center; animation:popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.teaser-box.visible { display:block; }
+.teaser-box h3 { margin:0 0 8px; color:var(--cmr-green); font-family:"Montserrat",sans-serif; font-size:16px; }
+.teaser-value { font-family:"Montserrat",sans-serif; font-size:26px; font-weight:700; color:var(--cmr-black); margin-bottom:12px; }
+.teaser-box p { margin:0; font-size:14px; color:var(--cmr-gray-dark); line-height:1.5; }
 
 @keyframes popIn {
- from { opacity: 0; transform: translateY(10px) scale(0.98); }
- to { opacity: 1; transform: translateY(0) scale(1); }
+ from { opacity:0; transform:translateY(10px) scale(0.98); }
+ to { opacity:1; transform:translateY(0) scale(1); }
 }
-
-.cta-box {
- display: none; padding: 20px; border-radius: 6px; background: var(--cmr-gray-light);
- border-top: 4px solid var(--cmr-red); margin-top: 20px;
-}
-.cta-box.visible { display: block; }
-.cta-box h3 { margin: 0 0 12px; font-family: "Montserrat", sans-serif; font-size: 17px; color: var(--cmr-black); }
-.cta-box p.hook-desc { margin: 0 0 16px; font-size: 14.5px; line-height: 1.5; }
 
 /* ─────────────────────────────────────────
- TLAČÍTKA A SOCIAL PROOF
+ CTA / KONTAKT
 ───────────────────────────────────────── */
-.btn-primary {
- width: 100%; min-height: 48px; padding: 12px 24px; border: none; border-radius: 4px;
- color: #fff; background: var(--cmr-red); cursor: pointer;
- font-family: "Montserrat", sans-serif; font-size: 16px; font-weight: 700;
- transition: all 0.2s; box-shadow: 0 4px 12px rgba(211, 17, 69, 0.25);
+.cta-box{ display:none; padding:20px; border-radius:6px; background:var(--cmr-gray-light); border-top:4px solid var(--cmr-red); margin-top:20px; }
+.cta-box.visible { display:block; }
+.cta-box h3{ margin:0 0 12px; font-family:"Montserrat",sans-serif; font-size:17px; color:var(--cmr-black); }
+.cta-box p.hook-desc{ margin:0 0 16px; font-size:14.5px; line-height:1.5; }
+
+.consent-row{ margin:16px 0; padding-top:16px; border-top:1px solid var(--cmr-border); }
+.consent-row label{ display:flex; align-items:flex-start; gap:10px; cursor:pointer; font-size:13.5px; color:var(--cmr-gray-dark); line-height:1.4; }
+.consent-row input{ width:18px; height:18px; margin-top:2px; accent-color:var(--cmr-red); flex-shrink:0; }
+
+.turnstile-wrap{ min-height:65px; margin-bottom:16px; }
+.msg-alert{ padding:12px; margin-bottom:16px; border-radius:4px; font-weight:500; font-size:14.5px; display:none; }
+.msg-alert.success{ background:var(--cmr-green-light); color:var(--cmr-green); border:1px solid var(--cmr-green); display:block; }
+.msg-alert.error{ background:#FFEBEE; color:var(--cmr-red-dark); border:1px solid var(--cmr-red); display:block; }
+
+.btn-primary { width:100%; min-height:48px; padding:12px 24px; border:none; border-radius:4px; color:#fff; background:var(--cmr-red); cursor:pointer; font-family:"Montserrat",sans-serif; font-size:16px; font-weight:700; transition:all 0.2s; box-shadow:0 4px 12px rgba(211,17,69,0.25); }
+.btn-primary:hover:not(:disabled) { background:var(--cmr-red-dark); transform:translateY(-1px); box-shadow:0 6px 16px rgba(211,17,69,0.3); }
+.btn-primary:disabled { background:#ccc; cursor:not-allowed; box-shadow:none; transform:none; }
+.btn-primary.is-sending { cursor:wait; opacity:0.8; }
+
+.social-proof { margin-top:16px; text-align:center; font-size:12.5px; color:var(--cmr-gray-dark); display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+.social-proof span { display:flex; align-items:center; gap:4px; }
+.social-proof svg { width:16px; height:16px; fill:var(--cmr-green); }
+
+/* REPORT LOCKER & FINAL (Po odeslání) */
+.report-card{ margin-bottom:13px; padding:13px; border:1px solid var(--cmr-border); border-radius:3px; background:#fff; }
+.report-card h3{ margin:0 0 8px; font-family:"Montserrat",sans-serif; font-size:14px; }
+.status-badge{ display:inline-block; margin-bottom:7px; padding:4px 8px; border-radius:2px; font-family:"Montserrat",sans-serif; font-size:12px; font-weight:700; }
+.status-exempt{ color:#176b2c; background:#E8F5E9; }
+.status-taxable{ color:#a20e34; background:#FFEBEE; }
+.info-table{ width:100%; margin:8px 0; border-collapse:collapse; font-size:14px; }
+.info-table th, .info-table td{ padding:6px 8px; border:1px solid var(--cmr-border); text-align:left; vertical-align:top; }
+.info-table th{ width:63%; background:var(--cmr-gray-light); font-weight:600; }
+.info-table .important th, .info-table .important td{ color:var(--cmr-red); font-family:"Montserrat",sans-serif; font-weight:700; }
+
+#fullReportSection { display: none; }
+#fullReportSection.visible { display: block; }
+
+/* ─────────────────────────────────────────
+ PRINT MIRRORS & RESPONSIVITA
+───────────────────────────────────────── */
+.print-mirror{display:none}
+
+@media screen and (max-width:480px){
+ .frow{ flex-direction:column; gap:4px; }
+ .frow label{ padding-top:0; min-width:auto; font-size:14px; }
+ .fw, .fhalf{ width:100%; min-width:0; }
+ .teaser-value{ font-size:22px; }
 }
-.btn-primary:hover:not(:disabled) { background: var(--cmr-red-dark); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(211, 17, 69, 0.3); }
-.btn-primary:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; transform: none; }
-.btn-primary.is-sending { cursor: wait; opacity: 0.8; }
 
-.social-proof { margin-top: 12px; text-align: center; font-size: 12.5px; color: var(--cmr-gray-dark); display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.social-proof span { display: flex; align-items: center; gap: 4px; }
-.social-proof svg { width: 16px; height: 16px; fill: var(--cmr-green); }
-
-.consent-row { margin: 16px 0; padding-top: 16px; border-top: 1px solid var(--cmr-border); }
-.consent-row label { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13.5px; color: var(--cmr-gray-dark); line-height: 1.4; }
-.consent-row input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--cmr-red); flex-shrink: 0; }
-
-.turnstile-wrap { min-height: 65px; margin-bottom: 16px; }
-
-.msg-alert { padding: 12px; margin-bottom: 16px; border-radius: 4px; font-weight: 500; font-size: 14.5px; display: none; }
-.msg-alert.success { background: var(--cmr-green-light); color: var(--cmr-green); border: 1px solid var(--cmr-green); display: block; }
-.msg-alert.error { background: #FFEBEE; color: var(--cmr-red-dark); border: 1px solid var(--cmr-red); display: block; }
-
-@media screen and (max-width: 480px) {
- .frow { flex-direction: column; gap: 4px; }
- .frow label { padding-top: 0; min-width: auto; font-size: 14px; }
- .fw, .fhalf { width: 100%; min-width: 0; }
- .teaser-value { font-size: 22px; }
+@media print{
+ .save-status-bar, .draft-loaded-banner, .finalized-banner, .draft-toast, .storage-warning, .validation-warning, .btn-primary, .turnstile-wrap, .consent-row, .msg-alert, .teaser-box, .cta-box { display:none!important; }
+ body{ max-width:186mm; margin:0; padding:0; background:#fff; font-size:9pt; }
+ .cmr-header{ flex-direction:row!important; margin-bottom:4mm; padding-bottom:3mm; }
+ .cmr-logo-wrap{ width:44mm!important; }
+ .cmr-header-title{ text-align:right!important; }
+ article{ margin-bottom:2mm; page-break-inside:avoid; break-inside:avoid; }
+ .frow{ flex-direction:row!important; flex-wrap:wrap!important; margin:2mm 0; }
+ .frow label{ min-width:43mm!important; padding-top:1mm; font-size:8pt!important; }
+ .field, .chk-group{ display:none!important; }
+ .print-mirror{ display:block!important; width:100%; min-height:5mm; padding:1mm 2mm; border-bottom:1px solid #999; color:var(--cmr-black); font-size:9pt; line-height:1.4; white-space:pre-wrap; }
+ .print-mirror.empty::before{ content:"—"; color:#999; }
+ .report-card{ page-break-inside:avoid; break-inside:avoid; }
 }
 </style>
 </head>
@@ -176,11 +222,16 @@ article { margin-bottom: 16px; }
 <body>
 <form id="cmrForm" novalidate>
 
- <!-- ADMIN LIŠTA (Zobrazí se jen s ?admin=1 v URL) -->
+ <!-- ADMIN LIŠTA (Skrytá přes CSS, viditelná po ?admin=1) -->
  <div class="save-status-bar" id="adminBar">
  <div class="status-indicator">
- <span class="status-dot saved" id="statusDot"></span>
+ <span class="status-dot" id="statusDot"></span>
  <span id="statusText">Administrační režim</span>
+ </div>
+ <div class="save-actions">
+ <button type="button" class="btn-save-draft" id="saveBtn">💾 Uložit koncept</button>
+ <button type="button" class="btn-export-file" id="exportBtn">📤 Export JSON</button>
+ <button type="button" class="btn-reset" id="resetBtn">🗑 Vymazat data</button>
  </div>
  </div>
 
@@ -194,10 +245,9 @@ article { margin-bottom: 16px; }
  </div>
  </header>
 
+ <!-- KROK 1 -->
  <article>
- <div class="art-header">
- <span class="art-num">Krok 1</span><h2>Základní parametry</h2>
- </div>
+ <div class="art-header"><span class="art-num">Krok 1</span><h2>Základní parametry</h2></div>
  <div class="art-body">
  <div class="frow">
  <label for="propertyType">Typ nemovitosti <span class="required">*</span></label>
@@ -212,61 +262,56 @@ article { margin-bottom: 16px; }
  </div>
  </div>
  <div class="frow">
- <label for="region">Lokalita <span class="required">*</span></label>
- <div class="fw">
- <input id="region" type="text" class="field" placeholder="Město, obec nebo PSČ">
- </div>
+ <label for="region">Lokalita (Město/PSČ) <span class="required">*</span></label>
+ <div class="fw"><input id="region" type="text" class="field" placeholder="Město, obec nebo PSČ"></div>
  </div>
  <div class="frow">
  <label for="area">Užitná plocha (m²) <span class="required">*</span></label>
- <div class="fhalf">
- <input id="area" type="number" min="0" step="1" inputmode="numeric" class="field" placeholder="m²">
- </div>
+ <div class="fhalf"><input id="area" type="number" min="0" step="1" class="field" placeholder="m²"></div>
  </div>
  </div>
  </article>
 
+ <!-- KROK 2 -->
  <article>
- <div class="art-header">
- <span class="art-num">Krok 2</span><h2>Finanční odhad</h2>
- </div>
+ <div class="art-header"><span class="art-num">Krok 2</span><h2>Finanční odhad</h2></div>
  <div class="art-body">
  <div class="frow">
  <label for="salePrice">Předpokládaná prodejní cena <span class="required">*</span></label>
  <div class="fw">
- <input id="salePrice" type="number" min="0" step="1" inputmode="numeric" class="field" placeholder="Kč">
+ <input id="salePrice" type="number" min="0" step="1" class="field" placeholder="Kč">
  <div class="help-text">Váš odhad, za kolik se nemovitost prodá.</div>
  </div>
  </div>
  <div class="frow">
  <label for="purchasePrice">Původní pořizovací cena <span class="required">*</span></label>
  <div class="fw">
- <input id="purchasePrice" type="number" min="0" step="1" inputmode="numeric" class="field" placeholder="Kč">
+ <input id="purchasePrice" type="number" min="0" step="1" class="field" placeholder="Kč">
  <div class="help-text">Za kolik jste nemovitost koupili (nebo hodnota z dědictví).</div>
  </div>
  </div>
  <div class="frow">
  <label for="acquisitionYear">Orientační rok nabytí <span class="required">*</span></label>
  <div class="fhalf">
- <input id="acquisitionYear" type="number" min="1900" max="2026" step="1" inputmode="numeric" class="field" placeholder="Např. 2015">
+ <input id="acquisitionYear" type="number" min="1900" max="2026" step="1" class="field" placeholder="Např. 2015">
  <div class="help-text">Důležité pro výpočet tzv. časového testu (osvobození).</div>
  </div>
  </div>
  
- <div style="margin-top: 20px;">
+ <div style="margin-top:20px;">
  <button type="button" class="btn-primary" id="btnCalculateTeaser">Zobrazit orientační výsledek</button>
  </div>
  </div>
  </article>
 
- <!-- TEASER BOX (Zobrazí se po kliknutí) -->
+ <!-- TEASER BOX (Odhalí se po Krok 2) -->
  <div class="teaser-box" id="teaserBox">
  <h3>Váš orientační čistý výnos po odečtení daně se pohybuje mezi:</h3>
  <div class="teaser-value" id="teaserValueResult">-- Kč až -- Kč</div>
- <p>Tento rychlý odhad pracuje se základním modelem. Do přesného výpočtu však vstupují výjimky (bydliště, využití prostředků na bytovou potřebu) a expertní zhodnocení ceny v dané lokalitě.</p>
+ <p>Tento rychlý odhad pracuje se základním modelem. Do přesného výpočtu však vstupují daňové výjimky a expertní zhodnocení ceny v dané lokalitě.</p>
  </div>
 
- <!-- LEAD FORMULÁŘ -->
+ <!-- LEAD CTA BOX (Krok 3) -->
  <div class="cta-box" id="leadSection">
  <h3>Získejte přesný report s detailní analýzou</h3>
  <p class="hook-desc">Nechte si výpočet ověřit. Na e-mail vám zašleme <strong>kompletní analýzu prodeje v PDF</strong> včetně doporučené tržní ceny od našeho specialisty pro vaši lokalitu. Vše v rámci standardního servisu ČMR.</p>
@@ -282,7 +327,7 @@ article { margin-bottom: 16px; }
  <div class="fw"><input id="clientPhone" type="tel" class="field" placeholder="+420" autocomplete="tel"></div>
  </div>
  <div class="frow">
- <label for="clientEmail">E-mail pro zaslání reportu <span class="required">*</span></label>
+ <label for="clientEmail">E-mail <span class="required">*</span></label>
  <div class="fw"><input id="clientEmail" type="email" class="field" placeholder="vas@email.cz" autocomplete="email"></div>
  </div>
 
@@ -298,38 +343,35 @@ article { margin-bottom: 16px; }
  <div class="help-text" id="turnstileMessage" style="color:var(--cmr-gray-dark);">Načítám bezpečnostní ověření...</div>
  </div>
 
- <button type="button" class="btn-primary" id="btnSubmitLead">Odeslat žádost o přesný report</button>
+ <button type="button" class="btn-primary" id="btnSubmitLead" disabled>Odeslat žádost o přesný report</button>
  
  <div class="social-proof">
- <span>
- <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg>
- 22 let na trhu
- </span>
- <span>
- <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg>
- 2 471+ spokojených klientů
- </span>
- <span>
- <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg>
- Právní bezpečí ČMR
- </span>
+ <span><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg> 22 let na trhu</span>
+ <span><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg> 2 471+ spokojených klientů</span>
+ <span><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg> Právní bezpečí ČMR</span>
  </div>
  </div>
+
+ <!-- FULL REPORT (Skrytý do odemčení) -->
+ <article id="fullReportSection">
+ <div class="art-header"><span class="art-num">Výstup</span><h2>Kompletní orientační kalkulace (Odemčeno)</h2></div>
+ <div class="art-body" id="fullReportContent"></div>
+ </article>
 
 </form>
 
 <script>
 "use strict";
 
-const TURNSTILE_SITE_KEY = "0x4AAAAAAET_RRVNHiBUsHdS"; // Nahradit reálným klíčem
+const TURNSTILE_SITE_KEY = "0x4AAAAAAET_RRVNHiBUsHdS";
 const LEAD_API_URL = "https://cmr-tax-lead-endpoint.ceskomoravskarealitni.workers.dev";
 let turnstileToken = "";
 let turnstileWidgetId = null;
+let currentCalculation = null;
 
 const $ = (s) => document.querySelector(s);
 const num = (s) => Number($(s).value) || 0;
 
-// Zjištění Public módu (Skrytí admin lišty)
 if (new URLSearchParams(window.location.search).get('admin') === '1') {
  document.body.classList.add('admin-mode');
 }
@@ -344,12 +386,11 @@ function showMsg(text, isError = false) {
  box.className = "msg-alert " + (isError ? "error" : "success");
 }
 
-// Inicializace Turnstile s fallbackem pro WebView
 function initTurnstile() {
  const msg = $("#turnstileMessage");
  if (!window.turnstile) {
  msg.textContent = "Upozornění: Ověření Captcha není v tomto prohlížeči dostupné. Můžete pokračovat.";
- turnstileToken = "bypass_webview"; // Obejít blokaci tlačítka v IG/FB prohlížeči, pokud skript selže
+ turnstileToken = "bypass_webview"; 
  checkSubmitState();
  return;
  }
@@ -375,7 +416,7 @@ window.addEventListener("load", () => {
  setTimeout(initTurnstile, 500);
 });
 
-// Zpracování Teaseru (Krok 2 -> Teaser)
+// Zpracování logiky Teaseru a Výpočtu
 $("#btnCalculateTeaser").addEventListener("click", () => {
  const type = $("#propertyType").value;
  const region = $("#region").value;
@@ -385,36 +426,42 @@ $("#btnCalculateTeaser").addEventListener("click", () => {
  const year = num("#acquisitionYear");
 
  if (!type || !region || !area || !sale || !purchase || !year) {
- alert("Prosím, vyplňte všechna pole v Kroku 1 a 2 pro orientační výpočet.");
+ alert("Prosím, vyplňte všechna pole pro orientační výpočet (Typ, Lokalita, Plocha, Ceny, Rok).");
  return;
  }
 
- // Rychlá logika odhadu
  const currentYear = new Date().getFullYear();
  const yearsOwned = currentYear - year;
  let estimatedTax = 0;
- 
- // Pokud nevlastní dlouho, hodíme orientační daň 15% ze zisku
- if (yearsOwned < 10) {
+ let statusMsg = "Daňové osvobození uplatněno (splněn časový test nad 10 let).";
+ let badgeClass = "status-exempt";
+
+ // Časový test pro nemovitosti nabyté od 2021 je 10 let, před 2021 je 5 let.
+ const requiredYears = year >= 2021 ? 10 : 5;
+
+ if (yearsOwned < requiredYears) {
  const profit = Math.max(0, sale - purchase);
- estimatedTax = profit * 0.15;
+ estimatedTax = profit * 0.15; // Zjednodušený model 15%
+ statusMsg = `Nesplněn časový test (vlastnictví pod ${requiredYears} let). Aplikován zjednodušený odhad daně 15 %.`;
+ badgeClass = "status-taxable";
  }
 
  const netEstimate = sale - estimatedTax;
- // Vytvoření rozmezí (Teaser) +/- 4%
  const minRange = netEstimate * 0.96;
  const maxRange = netEstimate * 1.04;
 
  $("#teaserValueResult").textContent = `${formatCurrency(minRange)} až ${formatCurrency(maxRange)}`;
- 
  $("#teaserBox").classList.add("visible");
  $("#leadSection").classList.add("visible");
  
- // Odskroluj na teaser
+ // Uložení do paměti pro pozdější odemčení reportu
+ currentCalculation = {
+ sale, purchase, estimatedTax, netEstimate, statusMsg, badgeClass
+ };
+
  $("#teaserBox").scrollIntoView({ behavior: "smooth", block: "center" });
 });
 
-// Zpracování Lead Formuláře
 function checkSubmitState() {
  const consent = $("#contactConsent").checked;
  $("#btnSubmitLead").disabled = !consent || !turnstileToken;
@@ -435,7 +482,7 @@ $("#btnSubmitLead").addEventListener("click", async () => {
  const btn = $("#btnSubmitLead");
  btn.disabled = true;
  btn.classList.add("is-sending");
- btn.textContent = "Odesílám...";
+ btn.textContent = "Odemykám report...";
 
  const payload = {
  type: $("#propertyType").value,
@@ -460,22 +507,73 @@ $("#btnSubmitLead").addEventListener("click", async () => {
 
  if (typeof fbq === 'function') fbq('track', 'Lead');
 
- showMsg("Děkujeme! Váš požadavek byl úspěšně odeslán. Náš specialista pro vaši lokalitu vám brzy zašle přesný PDF report.");
- btn.textContent = "Odesláno";
+ showMsg("Děkujeme! Níže se odemkl váš detailní report. Náš specialista se vám brzy ozve.");
+ btn.textContent = "Odemčeno";
  
+ // VYKRESLENÍ FULL REPORTU
+ renderFullReport();
+
  } catch (error) {
  console.error(error);
- showMsg("Nepodařilo se odeslat. Zkuste to prosím znovu.", true);
+ showMsg("Odeslání selhalo, ověřte připojení. Zkuste to prosím znovu.", true);
  btn.disabled = false;
  btn.textContent = "Zkusit odeslat znovu";
  } finally {
  btn.classList.remove("is-sending");
  }
 });
-</script>
 
+function renderFullReport() {
+ if (!currentCalculation) return;
+ const d = currentCalculation;
+
+ const html = `
+ <section class="report-card">
+ <h3>1. Daňový status výpočtu</h3>
+ <span class="status-badge ${d.badgeClass}">${d.badgeClass === 'status-exempt' ? 'OSVOBOZENO' : 'PRAVDĚPODOBNĚ ZDANITELNÉ'}</span>
+ <div>${d.statusMsg}</div>
+ </section>
+ <section class="report-card">
+ <h3>2. Odemčená kalkulace výnosu</h3>
+ <table class="info-table">
+ <tbody>
+ <tr><th>Hrubá předpokládaná prodejní cena</th><td>${formatCurrency(d.sale)}</td></tr>
+ <tr><th>Nabývací / pořizovací cena</th><td>${formatCurrency(d.purchase)}</td></tr>
+ <tr><th>Orientační odpočet daně z příjmu (FO)</th><td>${formatCurrency(d.estimatedTax)}</td></tr>
+ <tr class="important"><th>Orientační čistý výnos po zdanění</th><td>${formatCurrency(d.netEstimate)}</td></tr>
+ </tbody>
+ </table>
+ <div class="help-text">Výpočet nezahrnuje případné vedlejší náklady prodeje a provize. Tyto položky lze v reálu uplatnit jako daňový odpočet a snížit tak daňovou zátěž. Specialista ČMR je s vámi probere.</div>
+ </section>
+ `;
+
+ $("#fullReportContent").innerHTML = html;
+ $("#fullReportSection").classList.add("visible");
+ 
+ // Skrytí hook textů v CTA boxu, aby formulář "splnil účel" a uživatel nebyl rušen
+ $(".hook-desc").style.display = "none";
+ $("#btnSubmitLead").style.display = "none";
+
+ setTimeout(() => {
+ $("#fullReportSection").scrollIntoView({ behavior: "smooth", block: "start" });
+ }, 500);
+}
+
+// ─────────────────────────────────────────
+// ADMIN FUNKCE (Ukládání JSON)
+// ─────────────────────────────────────────
+$("#saveBtn").addEventListener("click", () => alert("Koncept uložen do LocalStorage (Admin mode)"));
+$("#exportBtn").addEventListener("click", () => {
+ const blob = new Blob([JSON.stringify({form:"Kalkulacka_V2", date:new Date()})], {type:"application/json"});
+ const url = URL.createObjectURL(blob);
+ const a = document.createElement("a"); a.href = url; a.download = "cmr_export.json"; a.click();
+});
+$("#resetBtn").addEventListener("click", () => window.location.reload());
+
+</script>
 <footer style="background:#F4F4F4;padding:24px 16px;margin-top:40px;font-family:'Roboto',sans-serif;font-size:13px;color:#4A4A4A;text-align:center;border-top:3px solid #D31145;">
  <p style="margin:4px 0;"><strong>Českomoravská realitní, a.s.</strong> | IČO: 27127966 | Sídlo: Hlavní 1151/4, 141 Praha 4</p>
+ <p style="margin:4px 0;"><a href="mailto:info@cmr.cz" style="color:#D31145;">info@cmr.cz</a></p>
  <p style="margin:4px 0;"><a href="https://www.cmr.cz/informace-o-zpracovani-osobnich-udaju/" style="color:#D31145;text-decoration:underline;">Zásady ochrany osobních údajů (GDPR)</a></p>
 </footer>
 </body>
