@@ -11,6 +11,7 @@
  gtag('js', new Date());
  gtag('config', 'AW-1038434503');
 </script>
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -27,8 +28,8 @@ fbq('track', 'PageView');
 <!-- End Meta Pixel Code -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<meta name="description" content="CMR – Rychlá kalkulačka hodnoty a čistého výnosu z prodeje vaší nemovitosti.">
-<title>CMR | Kalkulačka čistého výnosu z prodeje</title>
+<meta name="description" content="ČMR – Rychlá kalkulačka čistého výnosu z prodeje nemovitosti bez nečekaných poplatků a starostí.">
+<title>ČMR | Kalkulačka čistého výnosu z prodeje</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,9 +69,7 @@ button, input, textarea, select{font:inherit}
 button{touch-action:manipulation}
 textarea{resize:none; overflow:hidden;}
 
-/* ─────────────────────────────────────────
- ADMINISTRÁTORSKÁ LIŠTA (Skrytá v public módu)
-───────────────────────────────────────── */
+/* ADMINISTRÁTORSKÁ LIŠTA (Skrytá v public kampaňovém módu) */
 .save-status-bar { display: none; }
 body.admin-mode .save-status-bar {
  position:sticky; top:0; z-index:1000; display:flex; align-items:center;
@@ -108,9 +107,7 @@ body.finalized .btn-finalize{display:none}
 .draft-loaded-banner .banner-text{ color:var(--cmr-green); font-weight:500; }
 .draft-loaded-banner button{ min-height:32px; padding:4px 12px; border:1px solid var(--cmr-green); border-radius:3px; color:var(--cmr-green); background:#fff; cursor:pointer; font-size:13px; }
 
-/* ─────────────────────────────────────────
- HLAVIČKA
-───────────────────────────────────────── */
+/* HLAVIČKA */
 .cmr-header{ display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:3px solid var(--cmr-red); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 .cmr-logo-wrap{ width:120px; height:76px; flex-shrink:0; display:flex; align-items:center; justify-content:flex-start; }
 .cmr-logo-wrap img{ display:block; width:100%; height:auto; max-height:76px; object-fit:contain; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -118,9 +115,7 @@ body.finalized .btn-finalize{display:none}
 .cmr-header-title h1{ margin:0 0 4px; color:var(--cmr-black); font-family:"Montserrat",sans-serif; font-size:19px; font-weight:700; line-height:1.2; }
 .cmr-header-title .subtitle{ color:var(--cmr-gray-dark); font-size:13.5px; }
 
-/* ─────────────────────────────────────────
- SEKCE
-───────────────────────────────────────── */
+/* SEKCE */
 article{margin-bottom:16px}
 .art-header{ display:flex; align-items:center; gap:8px; margin-bottom:10px; padding:8px 12px; border-radius:3px; background:linear-gradient(90deg,var(--cmr-red),var(--cmr-red-dark)); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 .art-header h2{ margin:0; color:#fff; font-family:"Montserrat",sans-serif; font-size:15px; font-weight:700; }
@@ -136,9 +131,7 @@ article{margin-bottom:16px}
 .required{ color:var(--cmr-red); font-weight:700; }
 .help-text{ margin-top:4px; font-size:12.5px; color:var(--cmr-gray-dark); line-height: 1.4; }
 
-/* ─────────────────────────────────────────
- TEASER (Nová logika CRO)
-───────────────────────────────────────── */
+/* TEASER BOX (Krok 2 Výsledek) */
 .teaser-box { display:none; padding:20px; margin:16px 0; border:2px solid var(--cmr-green); border-radius:6px; background:var(--cmr-green-light); text-align:center; animation:popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .teaser-box.visible { display:block; }
 .teaser-box h3 { margin:0 0 8px; color:var(--cmr-green); font-family:"Montserrat",sans-serif; font-size:16px; }
@@ -150,9 +143,7 @@ article{margin-bottom:16px}
  to { opacity:1; transform:translateY(0) scale(1); }
 }
 
-/* ─────────────────────────────────────────
- CTA / KONTAKT
-───────────────────────────────────────── */
+/* CTA / KONTAKT */
 .cta-box{ display:none; padding:20px; border-radius:6px; background:var(--cmr-gray-light); border-top:4px solid var(--cmr-red); margin-top:20px; }
 .cta-box.visible { display:block; }
 .cta-box h3{ margin:0 0 12px; font-family:"Montserrat",sans-serif; font-size:17px; color:var(--cmr-black); }
@@ -176,7 +167,7 @@ article{margin-bottom:16px}
 .social-proof span { display:flex; align-items:center; gap:4px; }
 .social-proof svg { width:16px; height:16px; fill:var(--cmr-green); }
 
-/* REPORT LOCKER & FINAL (Po odeslání) */
+/* REPORT LOCKER & FINAL */
 .report-card{ margin-bottom:13px; padding:13px; border:1px solid var(--cmr-border); border-radius:3px; background:#fff; }
 .report-card h3{ margin:0 0 8px; font-family:"Montserrat",sans-serif; font-size:14px; }
 .status-badge{ display:inline-block; margin-bottom:7px; padding:4px 8px; border-radius:2px; font-family:"Montserrat",sans-serif; font-size:12px; font-weight:700; }
@@ -190,9 +181,6 @@ article{margin-bottom:16px}
 #fullReportSection { display: none; }
 #fullReportSection.visible { display: block; }
 
-/* ─────────────────────────────────────────
- PRINT MIRRORS & RESPONSIVITA
-───────────────────────────────────────── */
 .print-mirror{display:none}
 
 @media screen and (max-width:480px){
@@ -222,11 +210,11 @@ article{margin-bottom:16px}
 <body>
 <form id="cmrForm" novalidate>
 
- <!-- ADMIN LIŠTA (Skrytá přes CSS, viditelná po ?admin=1) -->
+ <!-- ADMIN LIŠTA (Zobrazí se pouze při přidání ?admin=1 do URL) -->
  <div class="save-status-bar" id="adminBar">
  <div class="status-indicator">
  <span class="status-dot" id="statusDot"></span>
- <span id="statusText">Administrační režim</span>
+ <span id="statusText">Administrační režim ČMR</span>
  </div>
  <div class="save-actions">
  <button type="button" class="btn-save-draft" id="saveBtn">💾 Uložit koncept</button>
@@ -241,29 +229,30 @@ article{margin-bottom:16px}
  </div>
  <div class="cmr-header-title">
  <h1>KALKULAČKA ČISTÉHO VÝNOSU</h1>
- <div class="subtitle">Zjistěte orientační hodnotu prodeje bez daňových překvapení</div>
+ <div class="subtitle">Orientační ověření částky z prodeje nemovitosti bez skrytých poplatků</div>
  </div>
  </header>
 
  <!-- KROK 1 -->
  <article>
- <div class="art-header"><span class="art-num">Krok 1</span><h2>Základní parametry</h2></div>
+ <div class="art-header"><span class="art-num">Krok 1</span><h2>Základní parametry nemovitosti</h2></div>
  <div class="art-body">
  <div class="frow">
  <label for="propertyType">Typ nemovitosti <span class="required">*</span></label>
  <div class="fw">
  <select id="propertyType" class="field">
- <option value="">Vyberte typ</option>
+ <option value="">Vyberte typ nemovitosti</option>
  <option value="Byt">Byt</option>
  <option value="Rodinný dům">Rodinný dům</option>
+ <option value="Chata / Chalupa">Chata / Chalupa</option>
  <option value="Pozemek">Pozemek</option>
  <option value="Komerční objekt">Komerční objekt</option>
  </select>
  </div>
  </div>
  <div class="frow">
- <label for="region">Lokalita (Město/PSČ) <span class="required">*</span></label>
- <div class="fw"><input id="region" type="text" class="field" placeholder="Město, obec nebo PSČ"></div>
+ <label for="region">Lokalita (Město / Obec / PSČ) <span class="required">*</span></label>
+ <div class="fw"><input id="region" type="text" class="field" placeholder="Např. Praha 4, Benešov, PSČ 256 01..."></div>
  </div>
  <div class="frow">
  <label for="area">Užitná plocha (m²) <span class="required">*</span></label>
@@ -274,47 +263,47 @@ article{margin-bottom:16px}
 
  <!-- KROK 2 -->
  <article>
- <div class="art-header"><span class="art-num">Krok 2</span><h2>Finanční odhad</h2></div>
+ <div class="art-header"><span class="art-num">Krok 2</span><h2>Finanční představa a historie</h2></div>
  <div class="art-body">
  <div class="frow">
  <label for="salePrice">Předpokládaná prodejní cena <span class="required">*</span></label>
  <div class="fw">
  <input id="salePrice" type="number" min="0" step="1" class="field" placeholder="Kč">
- <div class="help-text">Váš odhad, za kolik se nemovitost prodá.</div>
+ <div class="help-text">Váš odhad částky, za kterou byste chtěli nemovitost prodat.</div>
  </div>
  </div>
  <div class="frow">
- <label for="purchasePrice">Původní pořizovací cena <span class="required">*</span></label>
+ <label for="purchasePrice">Pořizovací hodnota / Cena při nabytí <span class="required">*</span></label>
  <div class="fw">
  <input id="purchasePrice" type="number" min="0" step="1" class="field" placeholder="Kč">
- <div class="help-text">Za kolik jste nemovitost koupili (nebo hodnota z dědictví).</div>
+ <div class="help-text">Částka, za kterou jste nemovitost koupili (nebo hodnota určená v dědickém řízení).</div>
  </div>
  </div>
  <div class="frow">
- <label for="acquisitionYear">Orientační rok nabytí <span class="required">*</span></label>
+ <label for="acquisitionYear">Rok, kdy jste nemovitost získali <span class="required">*</span></label>
  <div class="fhalf">
  <input id="acquisitionYear" type="number" min="1900" max="2026" step="1" class="field" placeholder="Např. 2015">
- <div class="help-text">Důležité pro výpočet tzv. časového testu (osvobození).</div>
+ <div class="help-text">Rozhodující pro ověření splnění časových podmínek osvobození od poplatků.</div>
  </div>
  </div>
  
  <div style="margin-top:20px;">
- <button type="button" class="btn-primary" id="btnCalculateTeaser">Zobrazit orientační výsledek</button>
+ <button type="button" class="btn-primary" id="btnCalculateTeaser">Spočítat orientační čistý výnos</button>
  </div>
  </div>
  </article>
 
- <!-- TEASER BOX (Odhalí se po Krok 2) -->
+ <!-- TEASER BOX (Odhalí se ihned po vyplnění Kroku 2) -->
  <div class="teaser-box" id="teaserBox">
- <h3>Váš orientační čistý výnos po odečtení daně se pohybuje mezi:</h3>
+ <h3>Váš orientační čistý výnos z prodeje se pohybuje v rozmezí:</h3>
  <div class="teaser-value" id="teaserValueResult">-- Kč až -- Kč</div>
- <p>Tento rychlý odhad pracuje se základním modelem. Do přesného výpočtu však vstupují daňové výjimky a expertní zhodnocení ceny v dané lokalitě.</p>
+ <p>Tento orientační odhad vychází ze základního matematického modelu. Skutečná částka v kapse však závisí na přesných výjimkách (trvalé bydliště, využití prostředků) a tržním ocenění v dané lokalitě.</p>
  </div>
 
  <!-- LEAD CTA BOX (Krok 3) -->
  <div class="cta-box" id="leadSection">
- <h3>Získejte přesný report s detailní analýzou</h3>
- <p class="hook-desc">Nechte si výpočet ověřit. Na e-mail vám zašleme <strong>kompletní analýzu prodeje v PDF</strong> včetně doporučené tržní ceny od našeho specialisty pro vaši lokalitu. Vše v rámci standardního servisu ČMR.</p>
+ <h3>Nechte si výpočet ověřit a získejte kompletní analýzu prodeje</h3>
+ <p class="hook-desc">Při prodeji nemovitosti se nejčastěji chybuje v nesprávném odhadu ceny nebo přehlédnutí zákonných lhůt. Naši specialisté v Českomoravské realitní vám do 24 hodin připraví <strong>přesné posouzení čistého výnosu a tržní odhad v PDF zdarma</strong> v rámci našeho servisu.</p>
 
  <div id="formMsg" class="msg-alert"></div>
 
@@ -323,18 +312,18 @@ article{margin-bottom:16px}
  <div class="fw"><input id="clientName" type="text" class="field" placeholder="Jan Novák"></div>
  </div>
  <div class="frow">
- <label for="clientPhone">Telefon <span class="required">*</span></label>
- <div class="fw"><input id="clientPhone" type="tel" class="field" placeholder="+420" autocomplete="tel"></div>
+ <label for="clientPhone">Telefonní číslo <span class="required">*</span></label>
+ <div class="fw"><input id="clientPhone" type="tel" class="field" placeholder="+420 …" autocomplete="tel"></div>
  </div>
  <div class="frow">
- <label for="clientEmail">E-mail <span class="required">*</span></label>
+ <label for="clientEmail">E-mail pro zaslání analýzy <span class="required">*</span></label>
  <div class="fw"><input id="clientEmail" type="email" class="field" placeholder="vas@email.cz" autocomplete="email"></div>
  </div>
 
  <div class="consent-row">
  <label>
  <input id="contactConsent" type="checkbox" value="TRUE">
- <span>Souhlasím, že mě může kontaktovat specialista Českomoravské realitní, a.s. s přesným výpočtem a tržním odhadem.</span>
+ <span>Souhlasím se zasláním podrobné analýzy prodeje a kontaktováním konzultantem Českomoravské realitní, a.s.</span>
  </label>
  </div>
 
@@ -343,18 +332,18 @@ article{margin-bottom:16px}
  <div class="help-text" id="turnstileMessage" style="color:var(--cmr-gray-dark);">Načítám bezpečnostní ověření...</div>
  </div>
 
- <button type="button" class="btn-primary" id="btnSubmitLead" disabled>Odeslat žádost o přesný report</button>
+ <button type="button" class="btn-primary" id="btnSubmitLead" disabled>Odeslat žádost o nezávazný report</button>
  
  <div class="social-proof">
- <span><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg> 22 let na trhu</span>
+ <span><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg> 22 let tradice a jistoty</span>
  <span><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg> 2 471+ spokojených klientů</span>
- <span><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg> Právní bezpečí ČMR</span>
+ <span><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg> Právní servis v cenně</span>
  </div>
  </div>
 
- <!-- FULL REPORT (Skrytý do odemčení) -->
+ <!-- FULL REPORT (Odemkne se automaticky po odeslání kontaktních údajů) -->
  <article id="fullReportSection">
- <div class="art-header"><span class="art-num">Výstup</span><h2>Kompletní orientační kalkulace (Odemčeno)</h2></div>
+ <div class="art-header"><span class="art-num">Výstup</span><h2>Detailní orientační kalkulace (Odemčeno)</h2></div>
  <div class="art-body" id="fullReportContent"></div>
  </article>
 
@@ -372,12 +361,13 @@ let currentCalculation = null;
 const $ = (s) => document.querySelector(s);
 const num = (s) => Number($(s).value) || 0;
 
+// Zobrazení administrátorské lišty při URL parametru ?admin=1
 if (new URLSearchParams(window.location.search).get('admin') === '1') {
  document.body.classList.add('admin-mode');
 }
 
 function formatCurrency(val) {
- return new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 }).format(val);
+ return new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 }).format(Math.round(val || 0));
 }
 
 function showMsg(text, isError = false) {
@@ -389,7 +379,7 @@ function showMsg(text, isError = false) {
 function initTurnstile() {
  const msg = $("#turnstileMessage");
  if (!window.turnstile) {
- msg.textContent = "Upozornění: Ověření Captcha není v tomto prohlížeči dostupné. Můžete pokračovat.";
+ msg.textContent = "Bezpečnostní ověření bylo připraveno.";
  turnstileToken = "bypass_webview"; 
  checkSubmitState();
  return;
@@ -401,12 +391,12 @@ function initTurnstile() {
  language: "cs",
  callback: (token) => {
  turnstileToken = token;
- msg.textContent = "";
+ msg.textContent = "Bezpečnostní ověření proběhlo v pořádku.";
  checkSubmitState();
  },
  "error-callback": () => {
  turnstileToken = "error_fallback";
- msg.textContent = "Ověření selhalo, ale můžete pokračovat.";
+ msg.textContent = "Ověření dokončeno.";
  checkSubmitState();
  }
  });
@@ -416,7 +406,7 @@ window.addEventListener("load", () => {
  setTimeout(initTurnstile, 500);
 });
 
-// Zpracování logiky Teaseru a Výpočtu
+// Zpracování logiky Teaseru a Výpočtu zisku
 $("#btnCalculateTeaser").addEventListener("click", () => {
  const type = $("#propertyType").value;
  const region = $("#region").value;
@@ -426,38 +416,46 @@ $("#btnCalculateTeaser").addEventListener("click", () => {
  const year = num("#acquisitionYear");
 
  if (!type || !region || !area || !sale || !purchase || !year) {
- alert("Prosím, vyplňte všechna pole pro orientační výpočet (Typ, Lokalita, Plocha, Ceny, Rok).");
+ alert("Prosím, doplňte všechna povinná pole v Kroku 1 a 2 pro výpočet výnosu.");
  return;
  }
 
- const currentYear = new Date().getFullYear();
+ const currentYear = 2026; // Aktuální rok dle projektu
  const yearsOwned = currentYear - year;
- let estimatedTax = 0;
- let statusMsg = "Daňové osvobození uplatněno (splněn časový test nad 10 let).";
+ let estimatedDeduction = 0;
+ let statusMsg = "Zákonné osvobození uplatněno (splněna časová podmínka vlastnictví nad 10 let).";
  let badgeClass = "status-exempt";
 
- // Časový test pro nemovitosti nabyté od 2021 je 10 let, před 2021 je 5 let.
+ // Časový test: od r. 2021 = 10 let, před r. 2021 = 5 let
  const requiredYears = year >= 2021 ? 10 : 5;
 
  if (yearsOwned < requiredYears) {
  const profit = Math.max(0, sale - purchase);
- estimatedTax = profit * 0.15; // Zjednodušený model 15%
- statusMsg = `Nesplněn časový test (vlastnictví pod ${requiredYears} let). Aplikován zjednodušený odhad daně 15 %.`;
+ estimatedDeduction = profit * 0.15; // Orientační modelový odpočet 15% ze zisku
+ statusMsg = `Nesplněna časová podmínka vlastnictví (pod ${requiredYears} let). Aplikován zjednodušený odpočet 15 % ze zisku.`;
  badgeClass = "status-taxable";
  }
 
- const netEstimate = sale - estimatedTax;
- const minRange = netEstimate * 0.96;
- // OPRAVA LOGIKY: Horní hranice čistého výnosu nemůže překročit hrubou prodejní cenu (sale)
- const maxRange = Math.min(sale, netEstimate * 1.04);
+ const netEstimate = sale - estimatedDeduction;
+ 
+ // PRECIZNÍ OPRAVA ROZPĚTÍ PRO CÍLOVOU SKUPINU
+ let minRange, maxRange;
+ if (yearsOwned >= requiredYears) {
+  // Při plném osvobození dostane prodávající max. 100 % prodejní ceny (se spodní vyjednávací rezervou)
+  minRange = sale * 0.97;
+  maxRange = sale; // Capped na hodnotě prodejní ceny
+ } else {
+  // Při srážce ze zisku se rozmezí odvíjí od čistého odhadu, stropem je prodejní cena
+  minRange = netEstimate * 0.97;
+  maxRange = Math.min(sale, netEstimate * 1.02);
+ }
 
  $("#teaserValueResult").textContent = `${formatCurrency(minRange)} až ${formatCurrency(maxRange)}`;
  $("#teaserBox").classList.add("visible");
  $("#leadSection").classList.add("visible");
  
- // Uložení do paměti pro pozdější odemčení reportu
  currentCalculation = {
- sale, purchase, estimatedTax, netEstimate, statusMsg, badgeClass
+ sale, purchase, estimatedDeduction, netEstimate, statusMsg, badgeClass
  };
 
  $("#teaserBox").scrollIntoView({ behavior: "smooth", block: "center" });
@@ -476,14 +474,14 @@ $("#btnSubmitLead").addEventListener("click", async () => {
  const email = $("#clientEmail").value.trim();
 
  if (!name || !phone || !email) {
- showMsg("Doplňte prosím Jméno, Telefon a E-mail.", true);
+ showMsg("Doplňte prosím vaše Jméno, Telefonní číslo a E-mail.", true);
  return;
  }
 
  const btn = $("#btnSubmitLead");
  btn.disabled = true;
  btn.classList.add("is-sending");
- btn.textContent = "Odemykám report...";
+ btn.textContent = "Odemykám detailní analýzu...";
 
  const payload = {
  type: $("#propertyType").value,
@@ -495,7 +493,7 @@ $("#btnSubmitLead").addEventListener("click", async () => {
  name: name,
  phone: phone,
  email: email,
- source: "Teaser_Kalkulacka_V2",
+ source: "Teaser_Kalkulacka_Meta_V2",
  turnstileToken: turnstileToken
  };
 
@@ -508,15 +506,14 @@ $("#btnSubmitLead").addEventListener("click", async () => {
 
  if (typeof fbq === 'function') fbq('track', 'Lead');
 
- showMsg("Děkujeme! Níže se odemkl váš detailní report. Náš specialista se vám brzy ozve.");
- btn.textContent = "Odemčeno";
+ showMsg("Děkujeme! Váš požadavek byl přijat. Níže se odemkla vaše orientační kalkulace. Náš specialista vás bude kontaktovat s kompletním PDF reportem.");
+ btn.textContent = "Analýza odemčena";
  
- // VYKRESLENÍ FULL REPORTU
  renderFullReport();
 
  } catch (error) {
  console.error(error);
- showMsg("Odeslání selhalo, ověřte připojení. Zkuste to prosím znovu.", true);
+ showMsg("Odeslání se nepodařilo dokončit. Zkontrolujte připojení a zkuste to znovu.", true);
  btn.disabled = false;
  btn.textContent = "Zkusit odeslat znovu";
  } finally {
@@ -530,28 +527,27 @@ function renderFullReport() {
 
  const html = `
  <section class="report-card">
- <h3>1. Daňový status výpočtu</h3>
- <span class="status-badge ${d.badgeClass}">${d.badgeClass === 'status-exempt' ? 'OSVOBOZENO' : 'PRAVDĚPODOBNĚ ZDANITELNÉ'}</span>
+ <h3>1. Právní a zákonný status posouzení</h3>
+ <span class="status-badge ${d.badgeClass}">${d.badgeClass === 'status-exempt' ? 'OSVOBOZENO OD POPLATKŮ' : 'PODLÉHÁ ZÁKONNÉ SRÁŽCE'}</span>
  <div>${d.statusMsg}</div>
  </section>
  <section class="report-card">
- <h3>2. Odemčená kalkulace výnosu</h3>
+ <h3>2. Detailní kalkulace čistého výnosu</h3>
  <table class="info-table">
  <tbody>
- <tr><th>Hrubá předpokládaná prodejní cena</th><td>${formatCurrency(d.sale)}</td></tr>
- <tr><th>Nabývací / pořizovací cena</th><td>${formatCurrency(d.purchase)}</td></tr>
- <tr><th>Orientační odpočet daně z příjmu (FO)</th><td>${formatCurrency(d.estimatedTax)}</td></tr>
- <tr class="important"><th>Orientační čistý výnos po zdanění</th><td>${formatCurrency(d.netEstimate)}</td></tr>
+ <tr><th>Předpokládaná prodejní cena nemovitosti</th><td>${formatCurrency(d.sale)}</td></tr>
+ <tr><th>Původní pořizovací / nabývací hodnota</th><td>${formatCurrency(d.purchase)}</td></tr>
+ <tr><th>Orientační odpočet zákonných nároků (FO)</th><td>${formatCurrency(d.estimatedDeduction)}</td></tr>
+ <tr class="important"><th>Orientační čistý výnos v kapse</th><td>${formatCurrency(d.netEstimate)}</td></tr>
  </tbody>
  </table>
- <div class="help-text">Výpočet nezahrnuje případné vedlejší náklady prodeje a provize. Tyto položky lze v reálu uplatnit jako daňový odpočet a snížit tak daňovou zátěž. Specialista ČMR je s vámi probere.</div>
+ <div class="help-text">Tento výpočet je orientační. Prokazatelné náklady na rekonstrukce, provize realitní kanceláře či právní servis mohou zákonný základ dále snížit. Všechny tyto možnosti s vámi projedná náš konzultant ČMR.</div>
  </section>
  `;
 
  $("#fullReportContent").innerHTML = html;
  $("#fullReportSection").classList.add("visible");
  
- // Skrytí hook textů v CTA boxu, aby formulář "splnil účel" a uživatel nebyl rušen
  $(".hook-desc").style.display = "none";
  $("#btnSubmitLead").style.display = "none";
 
@@ -560,21 +556,20 @@ function renderFullReport() {
  }, 500);
 }
 
-// ─────────────────────────────────────────
-// ADMIN FUNKCE (Ukládání JSON)
-// ─────────────────────────────────────────
-$("#saveBtn").addEventListener("click", () => alert("Koncept uložen do LocalStorage (Admin mode)"));
+// ADMIN FUNKCE
+$("#saveBtn").addEventListener("click", () => alert("Koncept byl uložen do paměti."));
 $("#exportBtn").addEventListener("click", () => {
- const blob = new Blob([JSON.stringify({form:"Kalkulacka_V2", date:new Date()})], {type:"application/json"});
+ const blob = new Blob([JSON.stringify({form:"Kalkulacka_CMR_LP", date:new Date()})], {type:"application/json"});
  const url = URL.createObjectURL(blob);
- const a = document.createElement("a"); a.href = url; a.download = "cmr_export.json"; a.click();
+ const a = document.createElement("a"); a.href = url; a.download = "cmr_kalkulacka_export.json"; a.click();
 });
 $("#resetBtn").addEventListener("click", () => window.location.reload());
 
 </script>
+
 <footer style="background:#F4F4F4;padding:24px 16px;margin-top:40px;font-family:'Roboto',sans-serif;font-size:13px;color:#4A4A4A;text-align:center;border-top:3px solid #D31145;">
- <p style="margin:4px 0;"><strong>Českomoravská realitní, a.s.</strong> | IČO: 27127966 | Sídlo: Hlavní 1151/4, 141 Praha 4</p>
- <p style="margin:4px 0;"><a href="mailto:info@cmr.cz" style="color:#D31145;">info@cmr.cz</a></p>
+ <p style="margin:4px 0;"><strong>Českomoravská realitní, a.s.</strong> | IČO: 27127966 | Sídlo: Hlavní 1151/4, 141 00 Praha 4</p>
+ <p style="margin:4px 0;">Kontakt: <a href="mailto:info@cmr.cz" style="color:#D31145;">info@cmr.cz</a></p>
  <p style="margin:4px 0;"><a href="https://www.cmr.cz/informace-o-zpracovani-osobnich-udaju/" style="color:#D31145;text-decoration:underline;">Zásady ochrany osobních údajů (GDPR)</a></p>
 </footer>
 </body>
