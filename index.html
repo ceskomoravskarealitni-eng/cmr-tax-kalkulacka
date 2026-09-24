@@ -448,7 +448,8 @@ $("#btnCalculateTeaser").addEventListener("click", () => {
 
  const netEstimate = sale - estimatedTax;
  const minRange = netEstimate * 0.96;
- const maxRange = netEstimate * 1.04;
+ // OPRAVA LOGIKY: Horní hranice čistého výnosu nemůže překročit hrubou prodejní cenu (sale)
+ const maxRange = Math.min(sale, netEstimate * 1.04);
 
  $("#teaserValueResult").textContent = `${formatCurrency(minRange)} až ${formatCurrency(maxRange)}`;
  $("#teaserBox").classList.add("visible");
